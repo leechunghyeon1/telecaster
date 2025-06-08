@@ -9,6 +9,7 @@
 </head>
 
 <body>
+  <!-- AR 기타 모델 뷰어 -->
   <div>
     <model-viewer
       id="guitarViewer"
@@ -20,7 +21,7 @@
       shadow-intensity="0.1"
       exposure="0.7"
       camera-controls
-      environment-image="background_1.jpg"
+      environment-image="background.jpg"
       auto-rotate
       ar>
       <button slot="ar-button" style="background:none; border:none; position:absolute; bottom:3vw; right:2vw;">
@@ -30,7 +31,7 @@
   </div>
 
   <!-- 감정 버튼 -->
-  <div style="position:fixed; top:3vw; left:3vw; z-index:10;">
+  <div class="emotion-buttons">
     <button onclick="changeBackground('happy.png')">😊 행복</button>
     <button onclick="changeBackground('sad.png')">😢 슬픔</button>
     <button onclick="changeBackground('angry.png')">😡 분노</button>
