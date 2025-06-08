@@ -38,3 +38,8 @@ function videoHandler(e) {
     document.getElementById('content2').style.display = 'block';
     document.getElementById('video2').style.display = 'none';
 }
+
+function changeBackground(imageFile) {
+  const viewer = document.getElementById('guitarViewer');
+  viewer.environmentImage = imageFile;
+}
