@@ -1,31 +1,40 @@
-<html>
-    <head>
-        <script src="script.js"></script>
-        <script
-            src="https://unpkg.com/focus-visible@5.0.2/dist/focus-visible.js"
-            defer>
-        </script>
-        <link rel="stylesheet" href="style.css">
-        <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-    </head>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>감정별 AR 기타</title>
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
 
-    <body>
-            <div>
-            <!-- <p class="textContent" style="margin-top:50vw;margin-bottom:50vw;"> -->
-            <model-viewer
-                class="vrContent"
-                style="width:100vw;height:150vw;max-width:95%;"
-                src="telecaster.glb"
-                ios-src="telecaster.usdz"
-                alt=""
-                shadow-intensity="0.1"
-                exposure=".7"
-                camera-controls
-                environment-image="ARbackground.jpg"
-                auto-rotate
-                ar>
-                <input type="image" src="vr.png" slot="ar-button" style="border: none; position: absolute; bottom:3vw;right:2vw;"/>
-            </model-viewer>
-            </div>
-    </body>
+<body>
+  <div>
+    <model-viewer
+      id="guitarViewer"
+      class="vrContent"
+      style="width:100vw;height:150vw;max-width:95%;"
+      src="telecaster.glb"
+      ios-src="telecaster.usdz"
+      alt="AR 기타 모델"
+      shadow-intensity="0.1"
+      exposure="0.7"
+      camera-controls
+      environment-image="background_1.jpg"
+      auto-rotate
+      ar>
+      <button slot="ar-button" style="background:none; border:none; position:absolute; bottom:3vw; right:2vw;">
+        <img src="vr.png" alt="AR 실행 버튼" />
+      </button>
+    </model-viewer>
+  </div>
+
+  <!-- 감정 버튼 -->
+  <div style="position:fixed; top:3vw; left:3vw; z-index:10;">
+    <button onclick="changeBackground('happy.jpg')">😊 행복</button>
+    <button onclick="changeBackground('sad.jpg')">😢 슬픔</button>
+    <button onclick="changeBackground('angry.jpg')">😡 분노</button>
+    <button onclick="changeBackground('calm.jpg')">😌 평온</button>
+  </div>
+</body>
 </html>
