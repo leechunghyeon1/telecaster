@@ -2,20 +2,116 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>Model Viewer 테스트</title>
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@1.13.1/dist/model-viewer.min.js"></script>
+  <title>감정별 AR 기타</title>
+  
+  <!-- model-viewer -->
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <!-- focus-visible (선택 사항) -->
+  <script src="https://unpkg.com/focus-visible@5.0.2/dist/focus-visible.js" defer></script>
+  
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+  
   <style>
-    body, html { margin: 0; height: 100%; }
-    model-viewer { width: 100vw; height: 100vh; }
+    /* 기본 body 스타일 */
+    body {
+      margin: 0;
+      height: 100%;
+      width: 100%;
+      background-image: url('ARbackground.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+    
+    /* model-viewer 스타일 */
+    .vrContent {
+      display: block;
+      max-height: 100%;
+      max-width: 70%;
+      margin: 0 auto;
+      border: 0;
+    }
+
+    model-viewer {
+      --poster-color: transparent;
+      z-index: 0;
+      background-color: transparent !important;
+      width: 100vw;
+      height: 150vw;
+      max-width: 95%;
+      exposure: 0.7;
+      shadow-intensity: 0.1;
+      camera-controls: true;
+      auto-rotate: true;
+    }
+    
+    /* 감정 버튼 컨테이너 */
+    .emotion-buttons {
+      position: fixed;
+      top: 3vw;
+      left: 3vw;
+      z-index: 10;
+    }
+    
+    /* 감정 버튼 스타일 */
+    .emotion-buttons button {
+      margin: 0.5vw;
+      padding: 1vw 2vw;
+      font-size: 1.5vw;
+      border: none;
+      border-radius: 1vw;
+      background: rgba(255, 255, 255, 0.8);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .emotion-buttons button:hover {
+      background: rgba(255, 255, 255, 1);
+    }
   </style>
 </head>
 <body>
-  <model-viewer
-    src="telecaster.glb"
-    alt="AR 기타 모델"
-    camera-controls
-    auto-rotate
-    background-color="#333"
-  ></model-viewer>
+
+  <!-- AR 기타 모델 뷰어 -->
+  <div>
+    <model-viewer
+      id="guitarViewer"
+      class="vrContent"
+      src="telecaster.glb"
+      ios-src="telecaster.usdz"
+      alt="AR 기타 모델"
+      shadow-intensity="0.1"
+      exposure="0.7"
+      camera-controls
+      environment-image="ARbackground.jpg"
+      auto-rotate
+      ar>
+      <input type="image" src="vr.png" slot="ar-button" style="border: none; position: absolute; bottom:3vw; right:2vw;" />
+    </model-viewer>
+  </div>
+
+  <!-- 감정 버튼 -->
+  <div class="emotion-buttons">
+    <button onclick="changeBackground('happy.png')">😊 행복</button>
+    <button onclick="changeBackground('sad.png')">😢 슬픔</button>
+    <button onclick="changeBackground('angry.png')">😡 분노</button>
+    <button onclick="changeBackground('calm.png')">😌 평온</button>
+  </div>
+
+  <script>
+    function changeBackground(imageFile) {
+      // 웹페이지 배경 이미지 변경
+      document.body.style.backgroundImage = `url('${imageFile}')`;
+
+      // model-viewer 환경 이미지 변경
+      const viewer = document.getElementById('guitarViewer');
+      if (viewer) {
+        viewer.environmentImage = imageFile;
+      }
+      
+      console.log("배경 및 환경 이미지 변경: ", imageFile);
+    }
+  </script>
+  
 </body>
 </html>
