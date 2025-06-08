@@ -52,3 +52,7 @@ model-viewer {
   font-family: Dosis-SemiBold;
   src: url("font.ttf") format('truetype');
 }
+
+model-viewer {
+  background-color: transparent !important;
+}
