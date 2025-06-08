@@ -2,51 +2,20 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>감정별 AR 기타</title>
-  
-  <!-- 최신 model-viewer 불러오기 -->
-  <script
-    type="module"
-    src="https://cdn.jsdelivr.net/npm/@google/model-viewer@1.13.1/dist/model-viewer.min.js"
-  ></script>
-  
-  <link rel="stylesheet" href="style.css" />
-  <script src="script.js" defer></script>
+  <title>Model Viewer 테스트</title>
+  <script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@1.13.1/dist/model-viewer.min.js"></script>
+  <style>
+    body, html { margin: 0; height: 100%; }
+    model-viewer { width: 100vw; height: 100vh; }
+  </style>
 </head>
 <body>
-  <!-- AR 기타 모델 뷰어 -->
-  <div>
-    <model-viewer
-      id="guitarViewer"
-      class="vrContent"
-      style="width:100vw; height:150vw; max-width:95%;"
-      src="telecaster.glb"
-      ios-src="telecaster.usdz"
-      alt="AR 기타 모델"
-      shadow-intensity="0.1"
-      exposure="0.7"
-      camera-controls
-      environment-image="background.jpg"
-      auto-rotate
-      ar
-      ar-modes="webxr scene-viewer quick-look"
-    >
-      <button
-        slot="ar-button"
-        style="background:none; border:none; position:absolute; bottom:3vw; right:2vw;"
-      >
-        <img src="vr.png" alt="AR 실행 버튼" />
-      </button>
-    </model-viewer>
-  </div>
-
-  <!-- 감정 버튼 -->
-  <div class="emotion-buttons">
-    <button onclick="changeBackground('happy.png')">😊 행복</button>
-    <button onclick="changeBackground('sad.png')">😢 슬픔</button>
-    <button onclick="changeBackground('angry.png')">😡 분노</button>
-    <button onclick="changeBackground('calm.png')">😌 평온</button>
-  </div>
+  <model-viewer
+    src="telecaster.glb"
+    alt="AR 기타 모델"
+    camera-controls
+    auto-rotate
+    background-color="#333"
+  ></model-viewer>
 </body>
 </html>
