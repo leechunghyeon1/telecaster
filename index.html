@@ -1,20 +1,26 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>감정별 AR 기타</title>
-  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-  <link rel="stylesheet" href="style.css">
+  
+  <!-- 최신 model-viewer 불러오기 -->
+  <script
+    type="module"
+    src="https://cdn.jsdelivr.net/npm/@google/model-viewer@1.13.1/dist/model-viewer.min.js"
+  ></script>
+  
+  <link rel="stylesheet" href="style.css" />
   <script src="script.js" defer></script>
 </head>
-
 <body>
   <!-- AR 기타 모델 뷰어 -->
   <div>
     <model-viewer
       id="guitarViewer"
       class="vrContent"
-      style="width:100vw;height:150vw;max-width:95%;"
+      style="width:100vw; height:150vw; max-width:95%;"
       src="telecaster.glb"
       ios-src="telecaster.usdz"
       alt="AR 기타 모델"
@@ -23,8 +29,13 @@
       camera-controls
       environment-image="background.jpg"
       auto-rotate
-      ar>
-      <button slot="ar-button" style="background:none; border:none; position:absolute; bottom:3vw; right:2vw;">
+      ar
+      ar-modes="webxr scene-viewer quick-look"
+    >
+      <button
+        slot="ar-button"
+        style="background:none; border:none; position:absolute; bottom:3vw; right:2vw;"
+      >
         <img src="vr.png" alt="AR 실행 버튼" />
       </button>
     </model-viewer>
